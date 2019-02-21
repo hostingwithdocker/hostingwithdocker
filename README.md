@@ -18,3 +18,5 @@ You host must be already bellow tools:
 - Clone `.env` from file `.env-example`
 - Config the right value in `.env`
 - run the script `./install.sh http`
+
+> These scripts in this repo forked from [mjstealey](https://github.com/mjstealey/wordpress-nginx-docker).
