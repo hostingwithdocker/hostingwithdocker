@@ -3,7 +3,7 @@ services:
 
   wordpress:
     image: wordpress:${WORDPRESS_VERSION:-php7.3-fpm}
-    container_name: wordpress
+    container_name: ${STACK_PREFIX:-HWD}wordpress
     volumes:
       - ./wordpress:/var/www/html
     environment:
@@ -18,7 +18,7 @@ services:
 
   mysql:
     image: mariadb:${MARIADB_VERSION:-latest}
-    container_name: mysql
+    container_name: ${STACK_PREFIX:-HWD}mysql
     volumes:
       - ./mysql:/var/lib/mysql
     environment:
@@ -30,7 +30,7 @@ services:
 
   nginx:
     image: nginx:${NGINX_VERSION:-latest}
-    container_name: nginx
+    container_name: ${STACK_PREFIX:-HWD}nginx
     ports:
       - '80:80'
       - '443:443'
