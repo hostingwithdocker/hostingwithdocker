@@ -8,6 +8,7 @@ a.k.a. hwd
 You host must be already bellow tools:
 - Docker ^18.06.1-ce
 - Docker Compose ^1.23.2
+- openssl (optional for self signed)
 
 ## REQUIREMENTS FOR DEMO:
 - Simple to start up the Wordpress webpage
