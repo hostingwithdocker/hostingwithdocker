@@ -7,8 +7,11 @@ mkdir -p certs/ certs-data/ nginx/ logs/nginx/ mysql/ wordpress/
 
 if [ "$http_type" = "" ] 
 then
-  echo "
-  [x] Missing arguments: <http|https> what type do you use?
+  echo "MANUAL: 
+  This script needs 3 arguments:
+  1) http|https : the type of web server 
+  2) 'www.example.com' or 'localhost' : Your domain name
+  3) selfsigned : Place this to self signed the host
   Example: ./install.sh http"
   exit $?
 fi
@@ -29,6 +32,8 @@ if [ "$what_signed" = "selfsigned" ]
 then
   cd ./letsenscrypt
   ./self-signed-init.sh $domain
+  sed -i 's/FQDN_OR_IP/localhost/gi' ../nginx/default.conf
+  sed -i 's/ssl_trusted_certificate/#ssl_trusted_certificate/gi' ../nginx/default.conf
 fi
 
 echo ">>> Run the stack: Mysql / Wordpress / Nginx"
