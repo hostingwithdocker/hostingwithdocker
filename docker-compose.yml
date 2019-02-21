@@ -1,5 +1,17 @@
 version: '3.6'
+
 services:
+  mysql:
+    image: mariadb:${MARIADB_VERSION:-latest}
+    container_name: mysql
+    volumes:
+    - ./mysql:/var/lib/mysql
+    environment:
+    - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-password}
+    - MYSQL_USER=${MYSQL_USER:-root}
+    - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
+    - MYSQL_DATABASE=${MYSQL_DATABASE:-wordpress}
+    restart: always
 
   wordpress:
     image: wordpress:${WORDPRESS_VERSION:-php7.3-fpm}
@@ -14,18 +26,6 @@ services:
       - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD:-password}
     depends_on:
       - mysql
-    restart: always
-
-  mysql:
-    image: mariadb:${MARIADB_VERSION:-latest}
-    container_name: mysql
-    volumes:
-      - ./mysql:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-password}
-      - MYSQL_USER=${MYSQL_USER:-root}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-password}
-      - MYSQL_DATABASE=${MYSQL_DATABASE:-wordpress}
     restart: always
 
   nginx:
