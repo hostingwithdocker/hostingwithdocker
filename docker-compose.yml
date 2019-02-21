@@ -43,3 +43,7 @@ services:
     depends_on:
       - wordpress
     restart: always
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-hostingwithdocker}
