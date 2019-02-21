@@ -4,6 +4,10 @@ Migration from classic application-deployment to most-recent hosting techniques 
 a.k.a. application hosting with Docker
 a.k.a. hosting with docker 
 a.k.a. hwd
+## Pre-requirement
+You host must be already bellow tools:
+- Docker ^18.06.1-ce
+- Docker Compose ^1.23.2
 
 ## REQUIREMENTS FOR DEMO:
 - Simple to start up the Wordpress webpage
