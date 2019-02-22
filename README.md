@@ -12,7 +12,7 @@ You host must be already bellow tools:
 
 ## REQUIREMENTS FOR DEMO:
 - Simple to start up the Wordpress webpage
-- Less command, code
+- One script to run
 
 ## START
 - Clone `.env` from file `.env-example`
