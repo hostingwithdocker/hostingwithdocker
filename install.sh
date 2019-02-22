@@ -3,8 +3,6 @@ http_type=$1
 domain=$2
 what_signed=$3
 
-mkdir -p certs/ certs-data/ nginx/ logs/nginx/ mysql/ wordpress/
-
 if [ "$http_type" = "" ] 
 then
   echo "MANUAL: 
@@ -15,6 +13,8 @@ then
   Example: ./install.sh http"
   exit $?
 fi
+
+mkdir -p certs/ certs-data/ nginx/ logs/nginx/ mysql/ wordpress/
 
 if [ ! -f nginx/default.conf ]
 then
