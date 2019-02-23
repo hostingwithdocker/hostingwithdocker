@@ -11,9 +11,9 @@ You host must be already bellow tools:
 - openssl (optional for self signed)
 
 ## REQUIREMENTS FOR DEMO:
-- a simple startup to run a Wordpress-based website
+- a simple get-started demo to run a Wordpress-based website
 - run ONE script to create
-- can have 02 wordpress instances on ONE host/machine
+- can have TWO wordpress instances on ONE host/machine on the cloud e.g. Vultr cloud
 
 ## START
 - clone `.env` from file `.env-example`
