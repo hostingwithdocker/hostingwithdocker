@@ -19,8 +19,13 @@ You host must be already bellow tools:
 - clone `.env` from file `.env-example`
 - config the right value in `.env`
 - run the script 
+  sample call as below - note CODE means this project 's git-cloned folder
 ```bash
+: you@localhost:CODE $
 ./start.sh http localhost
+
+: you@localhost:CODE $
+./stop-and-remove.sh 1 && ./start.sh http localhost
 ```
 > script files in this repo forked from [mjstealey](https://github.com/mjstealey/wordpress-nginx-docker).
 
