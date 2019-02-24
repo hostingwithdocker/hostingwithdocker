@@ -1,9 +1,23 @@
 #!/bin/bash
 
+manual='\
+MANUAL
+  This script needs 3 arguments
+  $1 http|https  a.k.a. the type of web server
+  $2 domain name e.g.   www.example.com, localhost
+  $3 selfsigned         set this to self-signed the host
+
+  E.g.
+  ./start.sh http
+  ./start.sh http localhost
+'
+
 # load params
   http_type=$1
      domain=$2
  selfsigned=$3
+
+if [[ -z $http_type ]]; then http_type='http'; fi
 
 # prepare data folders
 mkdir -p certs/ certs-data/ \
@@ -15,22 +29,6 @@ mkdir -p certs/ certs-data/ \
 if [[ ! -f .env ]]; then
   echo "[x] Missing the env file. Please copy the .env_example -> .env and edit these appropriate value."
   exit $?
-fi
-
-
-# http_type loading
-if [[ "$http_type" = "" ]]; then
-  echo "MANUAL: 
-  This script needs 3 arguments:
-  1) http|https : the type of web server 
-  2) 'www.example.com' or 'localhost' : Your domain name
-  3) selfsigned : Place this to self signed the host
-
-  E.g.
-  ./start.sh http
-  ./start.sh http localhost
-  "
-  exit
 fi
 
 
