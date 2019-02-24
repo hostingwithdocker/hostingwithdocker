@@ -18,6 +18,7 @@ You host must be already bellow tools:
 ## START
 - clone `.env` from file `.env-example`
 - config the right value in `.env`
+  **caution** that you should set nginx port values to be greater than 1000 #TODO verify this value threshold
 - run the script 
   sample call as below - note CODE means this project 's git-cloned folder
   ```bash
