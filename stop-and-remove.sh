@@ -19,27 +19,30 @@ fi
 
 case ${answer:0:1} in
     y|Y )
-        echo "INFO: Stopping containers"; docker-compose stop
-        echo "INFO: Removing containers"; docker-compose rm -f
+        echo; echo "INFO: Stopping containers..."; docker-compose stop
+        echo; echo "INFO: Removing containers..."; docker-compose rm -f
 
-        echo "INFO: Setting file permissions to that of the user"
+        echo; echo "INFO: Setting file permissions to that of the user..."
         docker run  --rm \
                     -v $(pwd):/clean \
                     -e UID=$(id -u) \
                     -e GID=$(id -g) \
                     nginx:latest /bin/bash -c 'chown -R $UID:$GID /clean'
 
-        echo "INFO: Pruning unused docker volumes";   docker volume prune -f
-        echo "INFO: Pruning unused docker networks";  docker network prune -f
+        echo; echo "INFO: Pruning unused docker volumes...";   docker volume prune -f
+        echo; echo "INFO: Pruning unused docker networks...";  docker network prune -f
 
-        echo "INFO: Removing directories and contents (certs/ certs-data/ logs/nginx/ mysql/ wordpress/)"
+        echo; echo "INFO: Removing directories and contents (certs/ certs-data/ logs/nginx/ mysql/ wordpress/)..."
         rm -rf certs/ certs-data/ nginx/ logs/nginx/ mysql/ wordpress/
 
-        echo "INFO: Done"
+        echo; echo "INFO: Removing nginx config..."
+        rm -rf nginx/default.conf
+
+        echo; echo "INFO: Done"
         exit 0;
     ;;
     * )
-        echo "INFO: Exiting without stopping containers or removing files"
+        echo "INFO: Exit without any stop/remove"
         exit 0;
     ;;
 esac
