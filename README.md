@@ -26,4 +26,8 @@ You host must be already bellow tools:
 
 
 ## STOP
-- run `stop-and-remove.sh` #TODO double check that this command only stopped the containers listed in docker-compose.yml
+- stop only 
+  run `stop.sh`
+
+- stop and remove everything
+  run `stop-and-remove.sh` #TODO double check that this command only stopped the containers listed in docker-compose.yml
