@@ -45,7 +45,7 @@ fi
 if [[ "$selfsigned" = "selfsigned" ]]; then
   cd ./letsenscrypt
     ./self-signed-init.sh $domain
-    sed -i 's/FQDN_OR_IP/localhost/gi' ../nginx/default.conf
+    sed -i 's/FQDN_OR_IP/localhost/gi' ../nginx/default.conf # FQDN_OR_IP aka full-qualified domain-name or ip
     sed -i 's/ssl_trusted_certificate/#ssl_trusted_certificate/gi' ../nginx/default.conf
   cd --
 fi
