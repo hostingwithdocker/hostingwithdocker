@@ -57,11 +57,10 @@ echo 'Aftermath testing...' >/dev/null
     echo -e "\
   $c1 ... $status
   $c2 ... $status
-  status: ${dGRE}$s${ENC}
-    code: ${dGRE}$s_code${ENC}
+  code: ${dGRE}$s_code${ENC}  status: ${dGRE}$s${ENC}
 "
 
-  if [[ $status == $PASS ]]; then
+  if [[ "$status" == "$PASS" ]]; then
     echo 'Testing wordpress endpoints...'
     c="curl -sS http://$server_name:$http_p/wp_admin 1>>$log 2>&1"; c_nd=$(echo $c | rev | cut -d' ' -f3- | rev); printf "  $c_nd ..."; eval $c; pass_or_fail # c_nd aka command no redirect
     c="curl -sS http://$server_name:$http_p          1>>$log 2>&1"; c_nd=$(echo $c | rev | cut -d' ' -f3- | rev); printf "  $c_nd ..."; eval $c; pass_or_fail # c_nd aka command no redirect
