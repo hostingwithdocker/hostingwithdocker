@@ -1,11 +1,12 @@
 #!/bin/bash
+s=$BASH_SOURCE ; s=$(dirname "$s") ; s=$(cd "$s" && pwd) ; SCRIPT_HOME="$s" #get SCRIPT_HOME=executed script's path, containing folder, cd & pwd to get container path
 
 manual='\
 MANUAL
   This script needs 3 arguments
-  $1 http|https  a.k.a. the type of web server
-  $2 domain name e.g.   www.example.com, localhost
-  $3 selfsigned         set this to self-signed the host
+  $1 http|https  a.k.a.   the type of web server
+  $2 domain name e.g.     www.example.com, localhost
+  $3 selfsigned           (optional) set this to self-signed the host
 
   E.g.
   ./start.sh http
@@ -17,7 +18,8 @@ MANUAL
      domain=$2
  selfsigned=$3
 
-if [[ -z $http_type ]]; then http_type='http'; fi
+if [[ -z $http_type ]]; then http_type='http';    fi
+if [[ -z $domain    ]]; then domain='localhost';  fi
 
 # prepare data folders
 mkdir -p certs/ certs-data/ \
@@ -39,16 +41,24 @@ if [[ ! -f nginx/default.conf ]]; then
 fi
 
 
-# selfsigned loading
-if [[ "$selfsigned" = "selfsigned" ]]; then
+if [[ "$selfsigned" = "selfsigned" ]]; then # selfsigned domain loading
   cd ./letsenscrypt
     ./self-signed-init.sh $domain
-    sed -i 's/FQDN_OR_IP/localhost/gi' ../nginx/default.conf # FQDN_OR_IP aka full-qualified domain-name or ip
-    sed -i 's/ssl_trusted_certificate/#ssl_trusted_certificate/gi' ../nginx/default.conf
+    sed -i  -e "s/FQDN_OR_IP/$domain/g" ../nginx/default.conf
+    sed -i  -e 's/ssl_trusted_certificate/#ssl_trusted_certificate/g' ../nginx/default.conf
   cd --
+
+else # domain loading
+    sed -i  -e "s/FQDN_OR_IP/$domain/g" ./nginx/default.conf
+    # FQDN_OR_IP aka full-qualified domain-name or ip
 fi
 
 
 # start the app aka the docker stack
 echo ">>> Run the stack: Mysql / Wordpress / Nginx"
 docker-compose up -d
+
+echo "\
+View access log  tail -f $SCRIPT_HOME/logs/nginx/access.log
+View error log   tail -f $SCRIPT_HOME/logs/nginx/error.log
+"
