@@ -54,6 +54,6 @@ echo "-  4:   server_name ${FQDN_OR_IP};"
 echo "- 19:   server_name               ${FQDN_OR_IP} www.${FQDN_OR_IP};"
 echo "- 40:   ssl_certificate           /etc/letsencrypt/live/${FQDN_OR_IP}/fullchain.pem;"
 echo "- 41:   ssl_certificate_key       /etc/letsencrypt/live/${FQDN_OR_IP}/privkey.pem;"
-echo "- 42:   #ssl_trusted_certificate   /etc/letsencrypt/live/FQDN_OR_IP/chain.pem; <-- COMMENT OUT OR REMOVE"
+echo "- 42:   #ssl_trusted_certificate  /etc/letsencrypt/live/FQDN_OR_IP/chain.pem; <-- COMMENT OUT OR REMOVE"
 
 exit 0;
