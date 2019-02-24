@@ -14,7 +14,7 @@ services:
     restart: always
 
   wordpress: # create service wordpress:9000 in the :network
-    image: wordpress:${WORDPRESS_VERSION:-php7.3-fpm} # port 9000 exposed
+    image: wordpress:${WORDPRESS_VERSION:-php7.3-fpm} # port 9000 exposed #TODO why not using latest wordpress?
     container_name: ${STACK_PREFIX:-HWD}wordpress
     volumes:
       - ./wordpress:/var/www/html
