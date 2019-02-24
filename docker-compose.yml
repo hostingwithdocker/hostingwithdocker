@@ -32,14 +32,21 @@ services:
     image: nginx:${NGINX_VERSION:-latest}
     container_name: ${STACK_PREFIX:-HWD}nginx
     ports:
-      - '${NGINX_HTTP_PORT:-80}:80'
-      - '${NGINX_HTTPS_PORT:-443}:443'
+      - ${NGINX_HTTP_PORT:-80}:80
+      - ${NGINX_HTTPS_PORT:-443}:443
     volumes:
       - ${NGINX_CONF_DIR:-./nginx}:/etc/nginx/conf.d
+
       - ${NGINX_LOG_DIR:-./logs/nginx}:/var/log/nginx
-      - ${WORDPRESS_DATA_DIR:-./wordpress}:/var/www/html
+
       - ${SSL_CERTS_DIR:-./certs}:/etc/letsencrypt
       - ${SSL_CERTS_DATA_DIR:-./certs-data}:/data/letsencrypt
+
+      # binding created bw. :nginx vs :wordpress
+      # i.e.
+      # :nginx service/container and :wordpress service/container mapped to the **SAME /var/www/html** folder
+      - ${WORDPRESS_DATA_DIR:-./wordpress}:/var/www/html
+
     depends_on:
       - wordpress
     restart: always
