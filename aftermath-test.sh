@@ -38,7 +38,7 @@ echo 'Aftermath testing...' >/dev/null
 
   nginx_config="$SCRIPT_HOME/nginx/default.conf"
   server_name=$( cat $nginx_config | grep server_name | rev | cut -d' ' -f1 | rev | sed 's/;//g' )
-  printf "Testing server_name='$server_name'"
+  printf "Testing server_name='${dGRE}$server_name${ENC}'"
   if [[ $server_name != 'FQDN_OR_IP' ]]; then echo -e " $PASS"; else echo -e " $FAIL"; fi
 
   echo
