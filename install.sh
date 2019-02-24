@@ -41,7 +41,7 @@ fi
 
 
 # selfsigned loading
-if [[ "$what_signed" = "selfsigned" ]]; then
+if [[ "$selfsigned" = "selfsigned" ]]; then
   cd ./letsenscrypt
     ./self-signed-init.sh $domain
     sed -i 's/FQDN_OR_IP/localhost/gi' ../nginx/default.conf
@@ -50,5 +50,6 @@ if [[ "$what_signed" = "selfsigned" ]]; then
 fi
 
 
+# start the app aka the docker stack
 echo ">>> Run the stack: Mysql / Wordpress / Nginx"
 docker-compose up -d
