@@ -20,24 +20,29 @@ You host must be already bellow tools:
 - config the right value in `.env`
 - run the script 
   sample call as below - note CODE means this project 's git-cloned folder
-```bash
-: you@localhost:CODE $
-./start.sh http localhost
-
-: you@localhost:CODE $
-./stop-and-remove.sh 1 && ./start.sh http localhost
-
-: you@localhost:CODE $
-./restart-http-local.sh
-```
+  ```bash
+  : you@localhost:CODE $
+  ./start.sh http localhost
+  
+  : you@localhost:CODE $
+  ./stop-and-remove.sh 1 && ./start.sh http localhost
+  
+  : you@localhost:CODE $
+  ./restart-http-local.sh
+  ```
 
 
 ## STOP
 - stop only 
-  run `stop.sh`
+  ```bash
+  ./stop.sh
+  ```
 
 - stop and remove everything
-  run `stop-and-remove.sh` #TODO double check that this command only stopped the containers listed in docker-compose.yml
+  ```bash
+  stop-and-remove.sh
+  stop-and-remove.sh y # for auto-answer yes
+  ```
 
 
 ## TEST
