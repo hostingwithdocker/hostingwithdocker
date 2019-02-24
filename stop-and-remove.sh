@@ -2,7 +2,21 @@
 
 : stop running containers and clean-up all related resources
 
-read -p "Do you really want to stop and remove EVERYTHING (y/n)? " answer
+auto_yes=$1
+if [[ ! -z $auto_yes ]]; then
+  # it's auto_yes=true --> no prompt
+  answer='y'
+
+else
+  # show confirm prompt
+  read -p "Do you really want to stop and remove EVERYTHING (Y/n)? " answer
+
+  # default as Y
+  if [[ -z $answer ]]; then
+    answer='Y'
+  fi
+fi
+
 case ${answer:0:1} in
     y|Y )
         echo "INFO: Stopping containers"; docker-compose stop
