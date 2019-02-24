@@ -23,7 +23,7 @@ https_p=$NGINX_HTTPS_PORT
 if [[ -z $http_p ]];  then http_p=80;   fi
 if [[ -z $https_p ]]; then https_p=443; fi
 
-echo "\
+echo -e "\
 Loading config...
   http  served at ${dGRE}$http_p${ENC}
   https served at ${dGRE}$https_p${ENC}
