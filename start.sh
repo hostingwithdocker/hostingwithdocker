@@ -1,14 +1,15 @@
 #!/bin/bash
 
+# load params
   http_type=$1
      domain=$2
  selfsigned=$3
 
+# prepare data folders
 mkdir -p certs/ certs-data/ \
          nginx/ logs/nginx/ \
          mysql/ \
          wordpress/
-
 
 # .env loading
 if [[ ! -f .env ]]; then
@@ -26,8 +27,8 @@ if [[ "$http_type" = "" ]]; then
   3) selfsigned : Place this to self signed the host
 
   E.g.
-  ./install.sh http
-  ./install.sh http localhost
+  ./start.sh http
+  ./start.sh http localhost
   "
   exit
 fi

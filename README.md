@@ -20,7 +20,7 @@ You host must be already bellow tools:
 - config the right value in `.env`
 - run the script 
 ```bash
-./install.sh http localhost
+./start.sh http localhost
 ```
 > script files in this repo forked from [mjstealey](https://github.com/mjstealey/wordpress-nginx-docker).
 
