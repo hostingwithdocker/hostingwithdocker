@@ -10,6 +10,13 @@ mkdir -p certs/ certs-data/ \
          wordpress/
 
 
+# .env loading
+if [[ ! -f .env ]]; then
+  echo "[x] Missing the env file. Please copy the .env_example -> .env and edit these appropriate value."
+  exit $?
+fi
+
+
 # http_type loading
 if [[ "$http_type" = "" ]]; then
   echo "MANUAL: 
@@ -30,13 +37,6 @@ fi
 if [[ ! -f nginx/default.conf ]]; then
   echo ">>> Copy the nginx config file"
   cp  "nginx_conf_source/default_$http_type.conf.template"  nginx/default.conf
-fi
-
-
-# .env loading
-if [[ ! -f .env ]]; then
-  echo "[x] Missing the env file. Please copy the .env_example -> .env and edit these appropriate value."
-  exit $?
 fi
 
 
