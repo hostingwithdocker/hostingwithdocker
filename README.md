@@ -26,8 +26,10 @@ You host must be already bellow tools:
 
 : you@localhost:CODE $
 ./stop-and-remove.sh 1 && ./start.sh http localhost
+
+: you@localhost:CODE $
+./restart-http-local.sh
 ```
-> script files in this repo forked from [mjstealey](https://github.com/mjstealey/wordpress-nginx-docker).
 
 
 ## STOP
@@ -36,3 +38,13 @@ You host must be already bellow tools:
 
 - stop and remove everything
   run `stop-and-remove.sh` #TODO double check that this command only stopped the containers listed in docker-compose.yml
+
+
+## TEST
+```bash
+./aftermath-test.sh
+```
+
+
+## reference
+script files in this repo forked from [mjstealey](https://github.com/mjstealey/wordpress-nginx-docker).

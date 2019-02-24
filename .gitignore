@@ -1,8 +1,12 @@
 .idea/
+
 .env
+
 certs/
 certs-data/
 logs/
 nginx/
 mysql/
 wordpress/
+
+aftermath-test.log
