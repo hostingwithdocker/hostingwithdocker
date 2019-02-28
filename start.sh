@@ -29,7 +29,7 @@ mkdir -p certs/ certs-data/ \
 
 # .env loading
 if [[ ! -f .env ]]; then
-  echo "[x] Missing the env file. Please copy the .env_example -> .env and edit these appropriate value."
+  echo "[x] Missing the env file. Please copy the .env_example -> .env and edit these appropriate values."
   exit $?
 fi
 
