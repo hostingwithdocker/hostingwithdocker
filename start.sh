@@ -11,6 +11,7 @@ MANUAL
   E.g.
   ./start.sh http
   ./start.sh http localhost
+  LOAD_DATADUMP_FILE=./initdb/data.sql ./start.sh http localhost
 '
 
 # load params
@@ -57,6 +58,13 @@ fi
 # start the app aka the docker stack
 echo ">>> Run the stack: Mysql / Wordpress / Nginx"
 docker-compose up -d
+
+# Load env by eval then import db
+if [ "${LOAD_DATADUMP_FILE}" != ""  ]; then
+  echo ">>> Waiting for 15 seconds for starting the MySQL service then start to import database"
+  sleep 15
+  (eval $(egrep -v '^#' .env | xargs) && docker exec -i ${STACK_PREFIX}mysql mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE} < ./initdb/data.sql)
+fi
 
 echo "\
 View access log  tail -f $SCRIPT_HOME/logs/nginx/access.log
